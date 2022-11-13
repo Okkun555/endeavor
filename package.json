@@ -8,7 +8,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "lint": "eslint src"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -25,8 +26,12 @@
     "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
     "@vitejs/plugin-react": "^2.2.0",
     "babel-loader": "^8.3.0",
+    "eslint": "^8.27.0",
+    "eslint-plugin-react": "^7.31.10",
     "typescript": "^4.6.4",
     "vite": "^3.2.3"
   }
