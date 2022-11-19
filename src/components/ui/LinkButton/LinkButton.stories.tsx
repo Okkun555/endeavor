@@ -10,6 +10,7 @@ const Template: ComponentStory<typeof LinkButtonComponent> = (args) => (
   <LinkButtonComponent
     text={args.text}
     color={args.color}
+    size={args.size}
     onClickLink={args.onClickLink}
   />
 );
@@ -18,6 +19,7 @@ export const LinkButton = Template.bind({});
 LinkButton.args = {
   text: 'ログイン',
   color: 'primary',
+  size: 'lg',
   onClickLink: () => {
     return;
   },
