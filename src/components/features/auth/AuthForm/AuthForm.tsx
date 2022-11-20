@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import './AuthForm.css';
 import { AuthType } from '../types';
 import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
@@ -8,7 +8,9 @@ type PropsType = {
 };
 
 const AuthForm: FC<PropsType> = ({ formType }) => {
-  const getFormTitle = () => (formType === 'signIn' ? 'Sign In' : 'Login');
+  const getFormTitle = useCallback(() => {
+    return formType === 'signIn' ? 'Sign In' : 'Login';
+  }, []);
 
   return (
     <div className="auth-form-container">
