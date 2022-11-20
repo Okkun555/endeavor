@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import './AuthForm.css';
 import { AuthType } from '../types';
+import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 
 type PropsType = {
   formType: AuthType;
@@ -33,7 +34,15 @@ const AuthForm: FC<PropsType> = ({ formType }) => {
             />
           </div>
 
-          <div className="d-grid gap-2 mt-3"></div>
+          <div className="d-grid gap-2 mt-4">
+            <SubmitButton
+              text={getFormTitle()}
+              size="sm"
+              color="primary"
+              width={360}
+              onClick={() => console.log('送信')}
+            />
+          </div>
         </div>
       </form>
     </div>
