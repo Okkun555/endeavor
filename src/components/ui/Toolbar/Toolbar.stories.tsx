@@ -7,10 +7,11 @@ export default {
 } as ComponentMeta<typeof ToolbarComponent>;
 
 const Template: ComponentStory<typeof ToolbarComponent> = (args) => (
-  <ToolbarComponent isMobile={args.isMobile} />
+  <ToolbarComponent isMobile={args.isMobile} title={args.title} />
 );
 
 export const Toolbar = Template.bind({});
 Toolbar.args = {
-  isMobile: false,
+  isMobile: true,
+  title: 'ホーム',
 };
