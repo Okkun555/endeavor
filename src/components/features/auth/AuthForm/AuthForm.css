@@ -15,6 +15,13 @@
     background-color: white;
 }
 
+.auth-form-mobile {
+    width: 420px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+}
+
 .auth-form-content {
     padding-left: 12%;
     padding-right: 12%;
