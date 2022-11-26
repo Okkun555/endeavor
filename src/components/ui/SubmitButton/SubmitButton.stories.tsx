@@ -12,7 +12,6 @@ const Template: ComponentStory<typeof SubmitButtonComponent> = (args) => (
     color={args.color}
     size={args.size}
     width={args.width}
-    onClick={args.onClick}
   />
 );
 
@@ -22,7 +21,4 @@ SubmitButton.args = {
   color: 'primary',
   size: 'lg',
   width: 200,
-  onClick: () => {
-    return;
-  },
 };

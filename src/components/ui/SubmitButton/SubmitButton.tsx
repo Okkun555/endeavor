@@ -6,12 +6,11 @@ type PropsType = {
   color: string;
   size: 'lg' | 'sm';
   width: number;
-  onClick: () => void;
 };
 
-const SubmitButton: FC<PropsType> = ({ text, size, width, onClick }) => {
+const SubmitButton: FC<PropsType> = ({ text, size, width }) => {
   return (
-    <Button size={size} onClick={onClick}>
+    <Button size={size} type="submit">
       {text}
     </Button>
   );
