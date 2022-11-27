@@ -11,7 +11,7 @@ const Template: ComponentStory<typeof SubmitButtonComponent> = (args) => (
     text={args.text}
     color={args.color}
     size={args.size}
-    width={args.width}
+    isLoading={args.isLoading}
   />
 );
 
@@ -20,5 +20,5 @@ SubmitButton.args = {
   text: 'Sign In',
   color: 'primary',
   size: 'lg',
-  width: 200,
+  isLoading: false,
 };

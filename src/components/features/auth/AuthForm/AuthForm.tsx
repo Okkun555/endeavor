@@ -18,7 +18,7 @@ type InputsType = {
 
 const AuthForm: FC<PropsType> = ({ formType }) => {
   const { isMobile } = useDevice();
-  const { displayTitle, postSignIn, postLogin } = useAuthForm();
+  const { isLoading, displayTitle, postSignIn, postLogin } = useAuthForm();
 
   const {
     register,
@@ -79,7 +79,7 @@ const AuthForm: FC<PropsType> = ({ formType }) => {
               text={displayTitle(formType)}
               size="sm"
               color="primary"
-              width={360}
+              isLoading={isLoading}
             />
           </div>
         </div>
