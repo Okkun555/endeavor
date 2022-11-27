@@ -18,7 +18,7 @@ type InputsType = {
 
 const AuthForm: FC<PropsType> = ({ formType }) => {
   const { isMobile } = useDevice();
-  const { displayTitle, postSignIn } = useAuthForm();
+  const { displayTitle, postSignIn, postLogin } = useAuthForm();
 
   const {
     register,
@@ -27,11 +27,13 @@ const AuthForm: FC<PropsType> = ({ formType }) => {
     formState: { errors },
   } = useForm<InputsType>({
     mode: 'onSubmit',
-    defaultValues: { email: '', password: 'aaa' },
+    defaultValues: { email: '', password: '' },
   });
 
-  const onSubmit: SubmitHandler<InputsType> = async (data) => {
-    await postSignIn(data.email, data.password);
+  const onSubmit: SubmitHandler<InputsType> = async ({ email, password }) => {
+    formType === 'signIn'
+      ? await postSignIn(email, password)
+      : await postLogin(email, password);
     reset();
   };
 
