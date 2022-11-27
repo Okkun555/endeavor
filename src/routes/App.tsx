@@ -1,16 +1,25 @@
-import { useContext } from 'react';
-import { RouterProvider } from 'react-router-dom';
-import { AuthContext } from '../providers/auth/context';
-import { guestRoutes } from './GuestRoutes';
-import { memberRoutes } from './MemberRoutes';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import RouteAuthGuard from './RouteAuthGuard';
+import NotFound from '../components/pages/NotFound/NotFound';
+import SignIn from '../components/pages/SignIn/SignIn';
+import Top from '../components/pages/Top/Top';
+import TrainingHistory from '../components/pages/TrainingHistory/TrainingHistory';
 
 const App = () => {
-  const { isLoggedIn } = useContext(AuthContext);
-
-  return isLoggedIn ? (
-    <RouterProvider router={memberRoutes} />
-  ) : (
-    <RouterProvider router={guestRoutes} />
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Top />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route
+          path="/training/history"
+          element={
+            <RouteAuthGuard component={<TrainingHistory />} redirect={'/'} />
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

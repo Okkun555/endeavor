@@ -20,9 +20,10 @@ export const useAuthForm = () => {
     try {
       startLoading();
       await createUserWithEmailAndPassword(auth, email, password);
+      return true;
     } catch (e) {
       console.error(e);
-      alert('アカウント作成に失敗しました');
+      return false;
     } finally {
       endLoading();
     }
@@ -32,9 +33,10 @@ export const useAuthForm = () => {
     try {
       startLoading();
       await signInWithEmailAndPassword(auth, email, password);
+      return true;
     } catch (e) {
       console.error(e);
-      alert('ログインに失敗しました');
+      return false;
     } finally {
       endLoading;
     }

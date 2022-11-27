@@ -6,6 +6,7 @@ import { AuthType } from '../types';
 import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 import { useDevice } from '../../../../hooks/useDevice';
 import { useAuthForm } from './useAuthForm';
+import { useNavigate } from 'react-router-dom';
 
 type PropsType = {
   formType: AuthType;
@@ -17,6 +18,7 @@ type InputsType = {
 };
 
 const AuthForm: FC<PropsType> = ({ formType }) => {
+  const navigate = useNavigate();
   const { isMobile } = useDevice();
   const { isLoading, displayTitle, postSignIn, postLogin } = useAuthForm();
 
@@ -31,10 +33,19 @@ const AuthForm: FC<PropsType> = ({ formType }) => {
   });
 
   const onSubmit: SubmitHandler<InputsType> = async ({ email, password }) => {
-    formType === 'signIn'
-      ? await postSignIn(email, password)
-      : await postLogin(email, password);
-    reset();
+    const responseStatus =
+      formType === 'signIn'
+        ? await postSignIn(email, password)
+        : await postLogin(email, password);
+
+    if (responseStatus) {
+      reset();
+      navigate('/training/history');
+      return;
+    }
+
+    // TODO: 失敗原因の特定がしにくい点が課題
+    alert('認証に失敗しました');
   };
 
   return (

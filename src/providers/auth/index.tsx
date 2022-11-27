@@ -14,9 +14,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   useEffect(() => {
-    if (auth.currentUser) {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        return;
+      }
+
       setIsLoggedIn(true);
-    }
+    });
   }, []);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
