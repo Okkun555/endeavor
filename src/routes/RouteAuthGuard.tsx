@@ -9,6 +9,7 @@ type PropsType = {
 
 const RouteAuthGuard: FC<PropsType> = (props) => {
   const { isLoggedIn } = useContext(AuthContext);
+  console.log(isLoggedIn);
 
   return isLoggedIn ? (
     <>{props.component}</>
