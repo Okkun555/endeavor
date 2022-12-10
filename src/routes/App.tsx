@@ -6,6 +6,7 @@ import Top from '../components/pages/Top/Top';
 import TrainingHistory from '../components/pages/TrainingHistory/TrainingHistory';
 import TrainingItemList from '../components/pages/TrainingItemList/TrainingItemList';
 import Login from '../components/pages/Login/Login';
+import TrainingItemRegister from '../components/pages/TrainingItemRegister/TrainingItemRegister';
 
 const App = () => {
   return (
@@ -24,11 +25,21 @@ const App = () => {
           }
         />
         <Route
-          path="/training/item/list"
+          path="/training/items"
           element={
             <RouteAuthGuard component={<TrainingItemList />} redirect={'/'} />
           }
         />
+        {/* <Route
+          path="/training/item"
+          element={
+            <RouteAuthGuard
+              component={<TrainingItemRegister />}
+              redirect={'/'}
+            />
+          }
+        /> */}
+        <Route path="/create" element={<TrainingItemRegister />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -7,6 +7,7 @@ import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 import { useDevice } from '../../../../hooks/useDevice';
 import { useAuthForm } from './useAuthForm';
 import { useNavigate } from 'react-router-dom';
+import { REQUIRE_MESSAGE } from '../../../../config/message';
 
 type PropsType = {
   formType: AuthType;
@@ -60,7 +61,7 @@ const AuthForm: FC<PropsType> = ({ formType }) => {
             <label>Email address</label>
             <input
               {...register('email', {
-                required: 'メールアドレスを入力してください',
+                required: `メールアドレス${REQUIRE_MESSAGE}`,
               })}
               type="email"
               className="form-control mt-1"

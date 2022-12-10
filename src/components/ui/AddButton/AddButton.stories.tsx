@@ -6,8 +6,13 @@ export default {
   component: AddButtonComponent,
 } as ComponentMeta<typeof AddButtonComponent>;
 
-const Template: ComponentStory<typeof AddButtonComponent> = () => (
-  <AddButtonComponent />
+const Template: ComponentStory<typeof AddButtonComponent> = (args) => (
+  <AddButtonComponent onClick={args.onClick} />
 );
 
 export const AddButton = Template.bind({});
+AddButton.args = {
+  onClick: () => {
+    return;
+  },
+};

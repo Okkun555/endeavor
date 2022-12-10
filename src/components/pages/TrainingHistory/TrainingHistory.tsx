@@ -6,7 +6,7 @@ const TrainingHistory = () => {
   return (
     <>
       <div>History</div>
-      <button onClick={() => navigate('/training/item/list')}>Items</button>
+      <button onClick={() => navigate('/training/items')}>Items</button>
     </>
   );
 };
