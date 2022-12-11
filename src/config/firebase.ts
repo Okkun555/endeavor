@@ -17,6 +17,6 @@ const app = initializeApp(firebaseConfig);
 // 認証周り
 const auth = getAuth(app);
 // firestore
-const database = getFirestore(app);
+const db = getFirestore();
 
-export { database, auth };
+export { db, auth };

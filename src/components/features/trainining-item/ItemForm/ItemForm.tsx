@@ -1,10 +1,12 @@
 import { FC, useMemo } from 'react';
 import './ItemForm.css';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { ItemFormInputType, itemTypes, targetParts, units } from '../types';
 import { REQUIRE_MESSAGE } from '../../../../config/message';
 import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 import { FormType } from '../../common/types';
+import { useLoading } from '../../../../hooks/useLoading';
+import { useItemForm } from './useItemForm';
 
 type ItemFormPropsType = {
   formType: FormType;
@@ -32,9 +34,18 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
     },
   });
 
+  const { isLoading, startLoading, endLoading } = useLoading();
+  const { postRegisterItem } = useItemForm();
+
+  const onSubmit: SubmitHandler<ItemFormInputType> = async (values) => {
+    startLoading();
+    await postRegisterItem({ ...values });
+    endLoading();
+  };
+
   return (
     <div className="item-form-container">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="item-form-content">
           <div className="form-group mt-3">
             <label htmlFor="name">種目名</label>
@@ -43,6 +54,9 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
               className="form-control mt-1"
               id="name"
             />
+            <p className="text-danger mt-2 mb-0" style={{ fontSize: '12px' }}>
+              {errors.name?.message}
+            </p>
           </div>
 
           <div className="form-group mt-3">
@@ -60,6 +74,9 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
                 </option>
               ))}
             </select>
+            <p className="text-danger mt-2 mb-0" style={{ fontSize: '12px' }}>
+              {errors.part?.message}
+            </p>
           </div>
 
           <div className="form-group mt-3">
@@ -77,6 +94,9 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
                 </option>
               ))}
             </select>
+            <p className="text-danger mt-2 mb-0" style={{ fontSize: '12px' }}>
+              {errors.unit?.message}
+            </p>
           </div>
 
           <div className="form-group mt-3">
@@ -94,6 +114,9 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
                 </option>
               ))}
             </select>
+            <p className="text-danger mt-2 mb-0" style={{ fontSize: '12px' }}>
+              {errors.type?.message}
+            </p>
           </div>
 
           <div className="form-group mt-3">
@@ -110,7 +133,7 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
               text={buttonText}
               size="sm"
               color="primary"
-              isLoading={false}
+              isLoading={isLoading}
             />
           </div>
         </div>
