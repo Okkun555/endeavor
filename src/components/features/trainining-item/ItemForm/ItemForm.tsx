@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import './ItemForm.css';
 import { useForm } from 'react-hook-form';
-import { ItemFormInputType, parts } from '../types';
+import { ItemFormInputType, itemTypes, targetParts, units } from '../types';
 import { REQUIRE_MESSAGE } from '../../../../config/message';
 import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 import { FormType } from '../../common/types';
@@ -51,24 +51,58 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
               {...register('part', {
                 required: `対象部位${REQUIRE_MESSAGE}`,
               })}
-              className="form-control mt-1"
+              className="form-select mt-1"
               id="part"
-            ></select>
+            >
+              {targetParts.map((part) => (
+                <option value={part.value} key={part.value}>
+                  {part.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group mt-3">
             <label htmlFor="unit">重量の単位</label>
-            <select className="form-control mt-1" id="unit"></select>
+            <select
+              {...register('unit', {
+                required: `重量の単位${REQUIRE_MESSAGE}`,
+              })}
+              className="form-select mt-1"
+              id="unit"
+            >
+              {units.map((unit) => (
+                <option value={unit.value} key={unit.value}>
+                  {unit.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group mt-3">
-            <label htmlFor="training-type">区分</label>
-            <select className="form-control mt-1" id="training-type"></select>
+            <label htmlFor="type">区分</label>
+            <select
+              {...register('type', {
+                required: `区分${REQUIRE_MESSAGE}`,
+              })}
+              className="form-select mt-1"
+              id="training-type"
+            >
+              {itemTypes.map((itemType) => (
+                <option value={itemType.value} key={itemType.value}>
+                  {itemType.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="form-group mt-3">
             <label htmlFor="memo">メモ</label>
-            <textarea className="form-control mt-1" id="memo" />
+            <textarea
+              {...register('memo', {})}
+              className="form-control mt-1"
+              id="memo"
+            />
           </div>
 
           <div className="d-grid mt-4">

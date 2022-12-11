@@ -1,33 +1,32 @@
+import { SelectObject } from '../../auth/types';
+
 export type ItemFormInputType = {
   name: string;
-  part: Parts;
-  unit: Unit; // 型してい指定
-  type: ItemType; // 型してい指定
+  part: number;
+  unit: number;
+  type: number;
   memo: string;
 };
 
-export const parts = {
-  1: '胸',
-  2: '背中',
-  3: '脚',
-  4: '肩',
-  5: '二頭',
-  6: '三頭',
-  99: 'その他',
-} as const;
+export const targetParts: SelectObject[] = [
+  { value: 1, label: '胸' },
+  { value: 2, label: '背中' },
+  { value: 3, label: '脚' },
+  { value: 4, label: '肩' },
+  { value: 5, label: '二頭' },
+  { value: 6, label: '三頭' },
+  { value: 7, label: '腹筋' },
+  { value: 99, label: 'その他' },
+];
 
-export const unit = {
-  1: 'kg',
-  2: 'lbs',
-  3: 'min',
-  99: 'その他',
-} as const;
+export const units: SelectObject[] = [
+  { value: 1, label: 'kg' },
+  { value: 2, label: 'lbs' },
+  { value: 3, label: 'min' },
+  { value: 99, label: 'その他' },
+];
 
-export const itemType = {
-  1: '無酸素運動',
-  2: '有酸素運動',
-};
-
-type Parts = keyof typeof parts;
-type Unit = keyof typeof unit;
-type ItemType = keyof typeof itemType;
+export const itemTypes: SelectObject[] = [
+  { value: 1, label: '無酸素運動' },
+  { value: 2, label: '有酸素運動' },
+];
