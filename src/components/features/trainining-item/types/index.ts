@@ -4,8 +4,6 @@ export type ItemFormInputType = {
   name: string;
   part: number;
   unit: number;
-  type: number;
-  memo: string;
 };
 
 export const targetParts: SelectObject[] = [
@@ -24,9 +22,4 @@ export const units: SelectObject[] = [
   { value: 2, label: 'lbs' },
   { value: 3, label: 'min' },
   { value: 99, label: 'その他' },
-];
-
-export const itemTypes: SelectObject[] = [
-  { value: 1, label: '無酸素運動' },
-  { value: 2, label: '有酸素運動' },
 ];
