@@ -1,8 +1,11 @@
 import { FC, useMemo } from 'react';
 import './ItemForm.css';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ItemFormInputType, targetParts, units } from '../types';
-import { REQUIRE_MESSAGE } from '../../../../config/message';
+import { ItemFormInputType } from '../types';
+import {
+  REQUIRE_MESSAGE,
+  SELECT_REQUIRE_MESSAGE,
+} from '../../../../config/message';
 import SubmitButton from '../../../ui/SubmitButton/SubmitButton';
 import { FormType } from '../../common/types';
 import { useLoading } from '../../../../hooks/useLoading';
@@ -28,7 +31,6 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
     mode: 'onSubmit',
     defaultValues: {
       name: '',
-      part: 1,
     },
   });
 
@@ -56,6 +58,11 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
             })}
           />
         </Col>
+        {errors.name && (
+          <Form.Text className="text-danger ml-2">
+            {errors.name.message}
+          </Form.Text>
+        )}
       </Form.Group>
 
       <Form.Group as={Row} controlId="part" className="mb-3">
@@ -63,8 +70,17 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
           対象部位
         </Form.Label>
         <Col sm={5}>
-          <Form.Select placeholder="対象部位を選択してください" />
+          <Form.Select
+            {...register('part', {
+              required: `対象部位${SELECT_REQUIRE_MESSAGE}`,
+            })}
+          />
         </Col>
+        {errors.part && (
+          <Form.Text className="text-danger ml-2">
+            {errors.part.message}
+          </Form.Text>
+        )}
       </Form.Group>
 
       <Form.Group as={Row} controlId="unit" className="mb-3">
@@ -72,8 +88,17 @@ const ItemForm: FC<ItemFormPropsType> = ({ formType }) => {
           重量単位
         </Form.Label>
         <Col sm={5}>
-          <Form.Select placeholder="重量単位を選択してください" />
+          <Form.Select
+            {...register('unit', {
+              required: `重量単位${SELECT_REQUIRE_MESSAGE}`,
+            })}
+          />
         </Col>
+        {errors.unit && (
+          <Form.Text className="text-danger ml-2">
+            {errors.unit.message}
+          </Form.Text>
+        )}
       </Form.Group>
 
       <SubmitButton
